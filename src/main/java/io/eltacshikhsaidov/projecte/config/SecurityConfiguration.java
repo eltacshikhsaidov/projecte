@@ -33,8 +33,7 @@ public class SecurityConfiguration {
                 .permitAll()
                 .and()
                 .formLogin()
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/profile");
+                .disable();
 
         return httpSecurity.build();
     }

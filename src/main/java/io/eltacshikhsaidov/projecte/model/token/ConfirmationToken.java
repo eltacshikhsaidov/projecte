@@ -35,6 +35,8 @@ public class ConfirmationToken {
 
     private LocalDateTime confirmedAt;
 
+    private LocalDateTime tokenUpdatedAt;
+
     @ManyToOne
     @JoinColumn(
             nullable = false,

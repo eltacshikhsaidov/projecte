@@ -37,7 +37,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="height:40px;">&nbsp;</td>
+                                <td>
+                                    <p style="color:#DC143C; font-size:10px;line-height:24px; margin-top:20px;">
+                                        *It will expire after ${expiredMinute} minutes
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="height:0;">&nbsp;</td>
                             </tr>
                         </table>
                     </td>

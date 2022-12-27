@@ -49,6 +49,9 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Value("${mail.message.confirm.url}")
     private String confirmUrl;
 
+    @Value("#{new Integer('${mail.confirm.expire.minute}')}")
+    private Integer expiredMinutes;
+
     @Override
     public RespStatusList register(ReqUserRegistration request, UserRole userRole) {
         log.info(
@@ -116,7 +119,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         ConfirmationToken confirmationToken = new ConfirmationToken(
                 token,
                 LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15),
+                LocalDateTime.now().plusMinutes(expiredMinutes),
                 user
         );
 
@@ -132,7 +135,8 @@ public class RegistrationServiceImpl implements RegistrationService {
                 confirmSubject,
                 emailUtil.getConfirmContent(
                         fullConfirmUrl,
-                        request.firstName()
+                        request.firstName(),
+                        expiredMinutes
                 )
         );
         log.info("Email successfully sent!");

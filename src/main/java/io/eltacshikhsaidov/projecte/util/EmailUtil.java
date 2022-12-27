@@ -17,11 +17,12 @@ public class EmailUtil {
 
     private final Configuration configuration;
 
-    public String getConfirmContent(String url, String firstName) {
+    public String getConfirmContent(String url, String firstName, Integer expiredMinute) {
         StringWriter stringWriter = new StringWriter();
         Map<String, Object> model = new HashMap<>();
         model.put("url", url);
         model.put("firstName", firstName);
+        model.put("expiredMinute", expiredMinute);
         try {
             configuration.getTemplate("email.ftlh").process(model, stringWriter);
         } catch (TemplateException | IOException e) {
