@@ -11,4 +11,5 @@ public class ExceptionCodes {
     public static final Integer BAD_CREDENTIALS = 9;
     public static final Integer EMAIL_IS_NOT_VERIFIED = 10;
     public static final Integer USER_LOCKED_BY_ADMIN = 11;
+    public static final Integer ACCESS_DENIED = 12;
 }

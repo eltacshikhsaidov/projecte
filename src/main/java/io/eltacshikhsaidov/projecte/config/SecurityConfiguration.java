@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Getter
@@ -42,6 +43,8 @@ public class SecurityConfiguration {
                 .invalidateHttpSession(true)
         );
 
+        httpSecurity.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());
+
         return httpSecurity.build();
     }
 
@@ -56,6 +59,11 @@ public class SecurityConfiguration {
                 .passwordEncoder(bCryptPasswordEncoder)
                 .and().build();
 
+    }
+
+    @Bean
+    public AuthenticationEntryPoint authenticationEntryPoint() {
+        return new CustomAuthenticationEntryPoint();
     }
 
 
