@@ -15,7 +15,7 @@ public class RegistrationController {
 
     private final RegistrationService registrationService;
 
-    @PostMapping
+    @GetMapping
     public RespStatusList register(@RequestBody ReqUserRegistration request) {
         return registrationService.register(request, UserRole.USER);
     }

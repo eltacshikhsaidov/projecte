@@ -1,5 +1,6 @@
 package io.eltacshikhsaidov.projecte.config;
 
+import io.eltacshikhsaidov.projecte.enums.UserRole;
 import io.eltacshikhsaidov.projecte.service.UserService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,19 +22,25 @@ public class SecurityConfiguration {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserService userService;
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity
                 .csrf()
                 .disable()
-                .authorizeHttpRequests()
-                .anyRequest()
-                .permitAll()
-                .and()
-                .formLogin()
-                .disable();
+                .authorizeHttpRequests( authorize -> authorize
+                        .requestMatchers("/register", "/login", "/register/confirm**", "/main").permitAll()
+                        .requestMatchers("/admin/**").hasRole(UserRole.ADMIN.name())
+                        .requestMatchers("/user/**").hasAnyRole(UserRole.ADMIN.name(), UserRole.USER.name())
+                        .requestMatchers("/logout").authenticated()
+                        .anyRequest().authenticated()
+                );
+
+        httpSecurity.logout( logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/main")
+                .invalidateHttpSession(true)
+        );
 
         return httpSecurity.build();
     }

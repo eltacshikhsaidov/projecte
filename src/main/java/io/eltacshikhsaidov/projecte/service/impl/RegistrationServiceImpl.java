@@ -26,6 +26,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static io.eltacshikhsaidov.projecte.util.translator.Translator.translate;
+
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @PropertySource(value = "classpath:mail.properties")
@@ -69,7 +71,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             response.setStatus(
                     new RespStatus(
                             ExceptionCodes.INVALID_REQUEST_DATA,
-                            "Invalid request data"
+                            translate("INVALID_REQUEST_DATA")
                     )
             );
             return response;
@@ -82,7 +84,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             response.setStatus(
                     new RespStatus(
                             ExceptionCodes.EMAIL_IS_NOT_VALID,
-                            "Email is not valid"
+                            translate("EMAIL_IS_NOT_VALID")
                     )
             );
             return response;
@@ -95,7 +97,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             response.setStatus(
                     new RespStatus(
                             ExceptionCodes.USER_WITH_THIS_EMAIL_IS_EXISTS,
-                            "User with this email is already exists"
+                            translate("USER_WITH_THIS_EMAIL_IS_EXISTS")
                     )
             );
             return response;
@@ -158,7 +160,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             response.setStatus(
                     new RespStatus(
                             ExceptionCodes.INVALID_REQUEST_DATA,
-                            "Invalid request data"
+                            translate("INVALID_REQUEST_DATA")
                     )
             );
             return response;
@@ -172,7 +174,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             response.setStatus(
                     new RespStatus(
                             ExceptionCodes.TOKEN_NOT_FOUND,
-                            "Token not found"
+                            translate("TOKEN_NOT_FOUND")
                     )
             );
             return response;
@@ -183,7 +185,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             response.setStatus(
                     new RespStatus(
                             ExceptionCodes.TOKEN_IS_ALREADY_CONFIRMED,
-                            "Token is already confirmed"
+                            translate("TOKEN_IS_ALREADY_CONFIRMED")
                     )
             );
             return response;
@@ -195,7 +197,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             response.setStatus(
                     new RespStatus(
                             ExceptionCodes.TOKEN_IS_EXPIRED,
-                            "Token is expired"
+                            translate("TOKEN_IS_EXPIRED")
                     )
             );
             return response;

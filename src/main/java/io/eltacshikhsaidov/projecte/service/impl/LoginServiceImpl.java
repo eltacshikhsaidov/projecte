@@ -7,6 +7,7 @@ import io.eltacshikhsaidov.projecte.response.RespStatusList;
 import io.eltacshikhsaidov.projecte.service.LoginService;
 import io.eltacshikhsaidov.projecte.util.AuthenticationUtil;
 import io.eltacshikhsaidov.projecte.util.validator.EmailValidator;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
+import static io.eltacshikhsaidov.projecte.util.translator.Translator.translate;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -22,6 +25,8 @@ public class LoginServiceImpl implements LoginService {
 
     private final EmailValidator emailValidator;
     private final AuthenticationUtil authenticationUtil;
+    private final HttpServletRequest httpServletRequest;
+
     @Override
     public RespStatusList login(ReqUserLogin request) {
         log.info("login() service started with request: {}", request.email());
@@ -32,7 +37,7 @@ public class LoginServiceImpl implements LoginService {
             response.setStatus(
                     new RespStatus(
                             ExceptionCodes.INVALID_REQUEST_DATA,
-                            "Invalid request data"
+                            translate("INVALID_REQUEST_DATA")
                     )
             );
             return response;
@@ -45,14 +50,14 @@ public class LoginServiceImpl implements LoginService {
             response.setStatus(
                     new RespStatus(
                             ExceptionCodes.EMAIL_IS_NOT_VALID,
-                            "Email is not valid"
+                            translate("EMAIL_IS_NOT_VALID")
                     )
             );
             return response;
         }
 
         try {
-            boolean isAuthenticated = authenticationUtil.isAuthenticated(request);
+            boolean isAuthenticated = authenticationUtil.isAuthenticated(request, httpServletRequest);
 
             if (isAuthenticated) {
                 log.info("login() response: success");
@@ -62,7 +67,7 @@ public class LoginServiceImpl implements LoginService {
                 response.setStatus(
                         new RespStatus(
                                 ExceptionCodes.LOGIN_FAILED,
-                                "Login failed"
+                                translate("LOGIN_FAILED")
                         )
                 );
             }
@@ -73,21 +78,21 @@ public class LoginServiceImpl implements LoginService {
                 response.setStatus(
                         new RespStatus(
                                 ExceptionCodes.BAD_CREDENTIALS,
-                                "Bad credentials"
+                                translate("BAD_CREDENTIALS")
                         )
                 );
             } else if (e instanceof DisabledException) {
                 response.setStatus(
                         new RespStatus(
                                 ExceptionCodes.EMAIL_IS_NOT_VERIFIED,
-                                "Email is not verified"
+                                translate("EMAIL_IS_NOT_VERIFIED")
                         )
                 );
             } else if (e instanceof LockedException) {
                 response.setStatus(
                         new RespStatus(
                                 ExceptionCodes.USER_LOCKED_BY_ADMIN,
-                                "Locked by admin"
+                                translate("USER_LOCKED_BY_ADMIN")
                         )
                 );
             } else {
