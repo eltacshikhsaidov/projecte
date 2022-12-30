@@ -60,20 +60,13 @@ There are many login registration examples in spring boot, but most of them are 
 ## Endpoints
 
 * ```/api/login```
-* * ```json
-
+```json
 {
-"email": "1eltac.shixseyidov@gmail.com",
-"password": "12345"
+   "email": "1eltac.shixseyidov@gmail.com",
+   "password": "12345"
 }
-
-{
-"status": {
-"statusCode": 1,
-"statusMessage": "Успешная операция"
-}
-
 ```
+
 * ```/api/register```
 * ```/api/register/resendEmail```
 * ```/api/register/confirm?token=0000-0000-0000-0000```
