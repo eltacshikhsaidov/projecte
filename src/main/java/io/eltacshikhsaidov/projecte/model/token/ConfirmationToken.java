@@ -37,6 +37,9 @@ public class ConfirmationToken {
 
     private LocalDateTime tokenUpdatedAt;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private Integer countRefreshToken;
+
     @ManyToOne
     @JoinColumn(
             nullable = false,

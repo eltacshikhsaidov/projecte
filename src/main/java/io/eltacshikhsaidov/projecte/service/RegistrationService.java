@@ -9,4 +9,6 @@ public interface RegistrationService {
     RespStatusList register(ReqUserRegistration reqUserRegistration, UserRole userRole);
 
     RespStatusList confirmToken(String token);
+
+    RespStatusList updateToken(ReqUserRegistration reqUserRegistration);
 }

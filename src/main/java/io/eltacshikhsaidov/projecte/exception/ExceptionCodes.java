@@ -12,4 +12,7 @@ public class ExceptionCodes {
     public static final Integer EMAIL_IS_NOT_VERIFIED = 10;
     public static final Integer USER_LOCKED_BY_ADMIN = 11;
     public static final Integer ACCESS_DENIED = 12;
+    public static final Integer NEW_TOKEN_WAS_SENT = 13;
+    public static final Integer EMAIL_IS_ALREADY_CONFIRMED = 14;
+    public static final Integer EXCEEDED_EMAIL_SENDING_LIMIT = 15;
 }

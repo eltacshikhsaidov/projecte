@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,6 +24,26 @@ public interface ConfirmationTokenRepository extends JpaRepository<ConfirmationT
 
     @Transactional
     @Modifying
-    @Query("UPDATE ConfirmationToken c SET c.token = ?2, c.tokenUpdatedAt = current_timestamp where c.token = ?1")
-    int updateToken(String oldToken, String newToken);
+    @Query(value = "UPDATE confirmation_token " +
+            "SET token = ?2, " +
+            "token_updated_at = current_timestamp," +
+            "expires_at = current_timestamp + ?3 * interval '1 minute'," +
+            "count_refresh_token = count_refresh_token + 1 " +
+            "where token = ?1", nativeQuery = true)
+    int updateToken(String oldToken, String newToken, Integer expireMinutes);
+
+    @Query("SELECT c.token " +
+            "from ConfirmationToken c " +
+            "inner join User u " +
+            "on u.id = c.user.id " +
+            "where u.email = ?1")
+    Optional<String> findTokenByEmail(String email);
+
+    List<ConfirmationToken> findAllByCountRefreshTokenGreaterThan(Integer countRefreshToken);
+
+
+    @Transactional
+    @Modifying
+    @Query("update ConfirmationToken c set c.countRefreshToken = 0 where c.id = ?1")
+    int resetLimitCount(Long id);
 }

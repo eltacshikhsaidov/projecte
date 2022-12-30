@@ -91,6 +91,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>${project.basedir}</finalName>
     </build>
 
 </project>

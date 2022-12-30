@@ -25,4 +25,9 @@ public class RegistrationController {
         return registrationService.confirmToken(token);
     }
 
+    @GetMapping(value = "/resendEmail")
+    public RespStatusList updateToken(@RequestBody ReqUserRegistration reqUserRegistration) {
+        return registrationService.updateToken(reqUserRegistration);
+    }
+
 }

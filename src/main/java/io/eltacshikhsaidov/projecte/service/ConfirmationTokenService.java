@@ -10,4 +10,6 @@ public interface ConfirmationTokenService {
     Optional<ConfirmationToken> getToken(String token);
 
     int setConfirmedAt(String token);
+
+    int setUpdatedAt(String oldToken, String newToken, Integer expiresAt);
 }
