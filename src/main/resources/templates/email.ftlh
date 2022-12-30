@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>Confirm Email Address</title>
+    <title>${title}</title>
     <meta name="description" content="Confirm Email Address">
     <style type="text/css">
         a:hover {
@@ -32,14 +32,14 @@
                             </tr>
                             <tr>
                                 <td style="padding:0 35px;">
-                                    <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;"> Confirm email address </h1><span style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
-                                    <p style="color:#455056; font-size:15px;line-height:24px; margin:0;"> Dear ${firstName}, someone just registered with this email address. If this was not you, please just forget this email address, otherwise click the following button: </p><a class="a" href="${url}" style="background:#21ca67;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Confirm email</a>
+                                    <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;"> ${header} </h1><span style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
+                                    <p style="color:#455056; font-size:15px;line-height:24px; margin:0;"> ${content} </p><a class="a" href="${url}" style="background:#21ca67;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">${buttonText}</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <p style="color:#DC143C; font-size:10px;line-height:24px; margin-top:20px;">
-                                        *It will expire after ${expiredMinute} minutes
+                                        ${redNote}
                                     </p>
                                 </td>
                             </tr>
@@ -54,7 +54,7 @@
                 <tr>
                     <td style="text-align:center;">
                         <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin: 0 0 5px 0;"> &copy; <strong><a href="https://projecte.com" style="color: inherit;">www.projecte.az</a></strong></p>
-                        <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">Azerbaijan, Baku</p>
+                        <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">${countryAndState}</p>
                     </td>
                 </tr>
                 <tr>

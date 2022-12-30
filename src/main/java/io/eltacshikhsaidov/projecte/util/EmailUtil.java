@@ -17,14 +17,26 @@ public class EmailUtil {
 
     private final Configuration configuration;
 
-    public String getConfirmContent(String url, String firstName, Integer expiredMinute) {
+    public String getEmailContent(
+            String title,
+            String header,
+            String buttonText,
+            String redNote,
+            String content,
+            String url,
+            String countryAndState,
+            String templateName) {
         StringWriter stringWriter = new StringWriter();
         Map<String, Object> model = new HashMap<>();
+        model.put("title", title);
+        model.put("header", header);
+        model.put("buttonText", buttonText);
+        model.put("redNote", redNote);
+        model.put("content", content);
         model.put("url", url);
-        model.put("firstName", firstName);
-        model.put("expiredMinute", expiredMinute);
+        model.put("countryAndState", countryAndState);
         try {
-            configuration.getTemplate("email.ftlh").process(model, stringWriter);
+            configuration.getTemplate(templateName).process(model, stringWriter);
         } catch (TemplateException | IOException e) {
             throw new RuntimeException(e);
         }

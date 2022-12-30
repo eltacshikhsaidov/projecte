@@ -3,6 +3,7 @@ package io.eltacshikhsaidov.projecte.model.token;
 import io.eltacshikhsaidov.projecte.model.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 
@@ -37,10 +38,9 @@ public class ConfirmationToken {
 
     private LocalDateTime tokenUpdatedAt;
 
-    @Column(columnDefinition = "integer default 0", nullable = false)
-    private Integer countRefreshToken;
+    private Integer countRefreshToken = 1;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(
             nullable = false,
             name = "user_id"

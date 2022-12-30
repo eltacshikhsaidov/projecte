@@ -141,10 +141,17 @@ public class RegistrationServiceImpl implements RegistrationService {
                 from,
                 request.email(),
                 confirmSubject,
-                emailUtil.getConfirmContent(
+                emailUtil.getEmailContent(
+                        translate("EMAIL_CONFIRM_TITLE"),
+                        translate("EMAIL_CONFIRM_HEADER"),
+                        translate("EMAIL_CONFIRM_BUTTON_TEXT"),
+                        translate("EMAIL_CONFIRM_RED_NOTE")
+                                .replace("[expire]", expiredMinutes.toString()),
+                        translate("EMAIL_CONFIRM_CONTENT")
+                                .replace("[firstName]", request.firstName()),
                         fullConfirmUrl,
-                        request.firstName(),
-                        expiredMinutes
+                        translate("EMAIL_CONFIRM_COUNTRY_STATE_FOOTER"),
+                        "email.ftlh"
                 )
         );
         log.info("Email successfully sent!");
@@ -287,7 +294,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
         if (!isNull(confirmationToken)) {
             if (confirmationToken.getCountRefreshToken() > mailSendLimitCount) {
-                log.info("You exceeded email sending limit for last 5 hours");
+                log.info("You exceeded email sending limit for last 2 minutes");
                 response.setStatus(
                         new RespStatus(
                                 ExceptionCodes.EXCEEDED_EMAIL_SENDING_LIMIT,
@@ -312,10 +319,17 @@ public class RegistrationServiceImpl implements RegistrationService {
                     from,
                     email,
                     confirmSubject,
-                    emailUtil.getConfirmContent(
+                    emailUtil.getEmailContent(
+                            translate("EMAIL_CONFIRM_TITLE"),
+                            translate("EMAIL_CONFIRM_HEADER"),
+                            translate("EMAIL_CONFIRM_BUTTON_TEXT"),
+                            translate("EMAIL_CONFIRM_RED_NOTE")
+                                    .replace("[expire]", expiredMinutes.toString()),
+                            translate("EMAIL_CONFIRM_CONTENT")
+                                    .replace("[firstName]", user.getFirstName()),
                             fullConfirmUrl,
-                            user.getFirstName(),
-                            expiredMinutes
+                            translate("EMAIL_CONFIRM_COUNTRY_STATE_FOOTER"),
+                            "email.ftlh"
                     )
             );
             log.info("Email successfully sent!");

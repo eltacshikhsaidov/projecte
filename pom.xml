@@ -91,7 +91,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>${project.basedir}</finalName>
+        <finalName>${project.artifactId}</finalName>
     </build>
 
 </project>
