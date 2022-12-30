@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/eltacshikhsaidov">
-    <img src="https://raw.githubusercontent.com/eltacshikhsaidov/projecte/develop/src/main/resources/static/assets/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://raw.githubusercontent.com/eltacshikhsaidov/projecte/develop/src/main/resources/static/assets/logo.png" alt="Logo" width="250" height="180">
   </a>
 
 <h3 align="center">Complete Login Registration</h3>
