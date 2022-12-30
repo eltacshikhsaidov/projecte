@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="![logo.png](logo.png)" alt="Logo" width="80" height="80">
+  <a href="https://github.com/eltacshikhsaidov">
+    <img src="https://raw.githubusercontent.com/eltacshikhsaidov/projecte/develop/src/main/resources/static/assets/logo.png" alt="Logo" width="250" height="180">
   </a>
 
 <h3 align="center">Complete Login Registration</h3>
